@@ -13,6 +13,11 @@ variable "sku_name" {
   description = "The Name of the SKU used for this Key Vault. Possible values are \"standard\" and \"premium\"."
   type        = string
   default     = "standard"
+
+  validation {
+    condition     = contains(["standard", "premium"], var.sku_name)
+    error_message = "Possible values for sku_name are \"standard\" and \"premium\""
+  }
 }
 
 variable "enabled_for_deployment" {
@@ -72,6 +77,11 @@ variable "soft_delete_retention_days" {
   description = "The number of days that items should be retained for once soft-deleted. This value can be between `7` and `90` days."
   type        = number
   default     = 7
+
+  validation {
+    condition     = var.soft_delete_retention_days >= 7 && var.soft_delete_retention_days <= 90
+    error_message = "The value can be between `7` and `90` days"
+  }
 }
 
 variable "rbac_authorization_enabled" {
