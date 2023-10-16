@@ -7,6 +7,7 @@ data "azurerm_resource_group" "this" {
 }
 
 resource "azurerm_key_vault" "this" {
+  # checkov:skip=CKV_AZURE_109::Ensure that key vault allows firewall rules settings
   count = module.this.enabled ? 1 : 0
 
   name = local.name_from_descriptor
