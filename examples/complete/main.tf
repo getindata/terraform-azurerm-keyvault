@@ -13,7 +13,7 @@ module "resource_group" {
 }
 
 module "vnet" {
-  source              = "github.com/Azure/terraform-azurerm-vnet?ref=3.0.0"
+  source              = "github.com/Azure/terraform-azurerm-vnet?ref=4.1.0"
   resource_group_name = module.resource_group.name
   vnet_location       = module.resource_group.location
 }
