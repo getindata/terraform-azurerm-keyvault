@@ -45,7 +45,8 @@ module "key_vault" {
     workspace_resource_id = azurerm_log_analytics_workspace.this.id
   }
 
-  purge_protection_enabled = false
+  purge_protection_enabled   = true
+  soft_delete_retention_days = 7
 
   public_network_access_enabled = true
   network_acls = {
@@ -60,7 +61,9 @@ module "key_vault" {
 }
 
 resource "azurerm_key_vault_secret" "foo" {
-  key_vault_id = module.key_vault.key_vault_id
-  name         = "foo"
-  value        = "bar"
+  key_vault_id    = module.key_vault.key_vault_id
+  name            = "foo"
+  value           = "bar"
+  expiration_date = "2023-12-30T20:00:00Z"
+  content_type    = "Example content"
 }
