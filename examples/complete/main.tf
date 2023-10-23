@@ -5,7 +5,7 @@ data "http" "myip" {
 }
 
 module "resource_group" {
-  source  = "github.com/getindata/terraform-azurerm-resource-group?ref=v1.2.0"
+  source  = "github.com/getindata/terraform-azurerm-resource-group?ref=v1.2.1"
   context = module.this.context
 
   name     = var.resource_group_name
